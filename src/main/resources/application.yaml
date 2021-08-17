@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: book-store-services
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:boostoredb;MODE=MYSQL;DATABASE_TO_UPPER=false;INIT=CREATE SCHEMA IF NOT EXISTS public
+    username: sa
+    platform: h2
+  r2dbc:
+    url: r2dbc:h2:mem:///boostoredb?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  h2:
+    console:      enabled: true
+      path: /h2-console
+      settings:        trace: true
+        web-allow-others: false
+  jpa:    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:      ddl-auto: none
+      format_sql: true
+    show-sql: true
+  logging:
+    level:
+      org.springframework: INFO
+      com.online.bookstore: INFO
+      pattern:
+        console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+        file: "%d %p %c{1.} [%t] %m%n"
+    file: app.log
+springdoc:
+  api-docs:
+    path: /api-docs
+
+promocodes:
+  promos:
+    - 
+        code: OFFERFTECH01
+        bookType: TECHNOLOGY
+        discount: 10
+        expiredate: 22/08/2021
+    - 
+        code: OFFERFSCI01
+        bookType: LITERATURE
+        discount: 5
+        expiredate: 12/09/2021
